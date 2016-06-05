@@ -9,6 +9,7 @@
 <script>
 function publish() {
     var question = document.getElementById("question").value;
+    var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "question.php?question=" + question, true);
     xhttp.send();
     var pubnub = PUBNUB({
