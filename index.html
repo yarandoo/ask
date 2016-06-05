@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>
+    Ask anything you want
+  </title>
+</head>
+<body>
+<script src="http://cdn.pubnub.com/pubnub-3.14.5.min.js"></script>
+<script>
+function publish() {
+    var question = document.getElementById("question").value;
+    var pubnub = PUBNUB({
+        publish_key : 'pub-c-fa10e23d-d20b-4109-b2dd-f78e944c699d',
+        subscribe_key: 'sub-c-dbebb2f6-2ac2-11e6-8b91-02ee2ddab7fe'
+    })
+    pub();
+    function pub() {
+        console.log("Publishing question", question);
+        pubnub.publish({
+            channel : "question",
+            message : question,
+            callback : function(m){
+              document.getElementById("questionForm").submit();
+            }
+        })
+    }
+};
+</script>
+  <form id="questionForm" action="thanks.html">
+      <label> Ask anything you want: </label>
+    </br>
+    <input id="question" type="text">
+    <button onClick="publish();return false;"> do </button>
+  </form>
+
+</html>
