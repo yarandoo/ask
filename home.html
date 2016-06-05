@@ -9,6 +9,8 @@
 <script>
 function publish() {
     var question = document.getElementById("question").value;
+    xhttp.open("GET", "question.php?question=" + question, true);
+    xhttp.send();
     var pubnub = PUBNUB({
         publish_key : 'pub-c-fa10e23d-d20b-4109-b2dd-f78e944c699d',
         subscribe_key: 'sub-c-dbebb2f6-2ac2-11e6-8b91-02ee2ddab7fe'
